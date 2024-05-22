@@ -10,10 +10,8 @@ Duck Bot is a command-line application built with Golang. It is designed to help
 
 ## Getting Started
 
-# Recommended Resources for Learning Go
-- [Must] [Tour of Go](https://tour.golang.org/welcome/1): A hands-on introduction to Go with interactive exercises.
-- [Recommend] [Go by Example](https://gobyexample.com/): A collection of Go examples that demonstrate various language features.
-- [Recommend] [Effective Go](https://golang.org/doc/effective_go.html): Official Go documentation that provides guidelines and best practices for writing Go code.
+## Recommended Resources for Learning Go
+https://github.com/plantuml-stdlib/C4-PlantUML
 
 These resources should help you get started with learning Go and prepare you for your project. Happy coding!
 

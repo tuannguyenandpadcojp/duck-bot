@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  plantuml:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/img
+    command: ["-tsvg", "/img/*.puml"]

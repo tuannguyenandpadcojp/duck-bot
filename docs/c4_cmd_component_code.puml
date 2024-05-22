@@ -1,0 +1,3 @@
+@startuml duck-bot-code
+title **cmd** component code
+@enduml

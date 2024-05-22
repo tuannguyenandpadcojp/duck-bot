@@ -1,0 +1,25 @@
+@startuml duck-bot-container
+title Bot Containers
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+!define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons/devicons2
+!include DEVICONS2/github_original.puml
+!include DEVICONS2/githubactions.puml
+!include DEVICONS2/go.puml
+!include DEVICONS2/slack.puml
+
+Person(user, "Duck Member")
+System(ghac, "Github Action", $sprite="githubactions")
+System_Ext(gh, "Github", $sprite="github_original")
+System_Ext(slack, "Slack", $sprite="slack")
+System_Boundary(c1, "Duck Bot") {
+    Container(ghac_job, "Github Action Job", "Github Action Job", "Runs on Github Action")
+    Container(cli_application, "CLI Application", "Go", "CLI application for data collection and visualization")
+}
+
+Rel(user, cli_application, "Triggers")
+Rel(ghac, ghac_job, "Starts")
+Rel(ghac_job, cli_application, "Triggers")
+Rel(cli_application, gh, "Fetch data", "https")
+Rel(cli_application, slack, "Send message", "https")
+@enduml

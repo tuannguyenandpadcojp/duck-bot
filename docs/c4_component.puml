@@ -1,0 +1,35 @@
+@startuml duck-bot-components
+title Bot Components
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+!define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons/devicons2
+!include DEVICONS2/github_original.puml
+!include DEVICONS2/githubactions.puml
+!include DEVICONS2/go.puml
+!include DEVICONS2/slack.puml
+
+Container(ghac_job, "Github Action Job", "Github Action Job", "Runs on Github Action")
+System_Ext(gh, "Github", $sprite="github_original")
+System_Ext(slack, "Slack", $sprite="slack")
+
+Container_Boundary(cli, "CLI Application") {
+    Component(manager, "Command Manager", "", "Allow to register and execute commands")
+    Component(command, "Command", "", "Implementation of the commands")
+    Component(gh_api, "Github API", "", "Github API client")
+    Component(slack_api, "Slack API", "", "Slack API client")
+    Component(config, "Configuration", "", "Configuration for the application")
+    Component(cmd, "Construction", "", "Construction of the application")
+}
+
+Rel(ghac_job, cmd, "Run command")
+Rel(cmd, config, "Load configuration")
+Rel(cmd, manager, "Register commands")
+Rel(cmd, gh_api, "Init Github API client")
+Rel(cmd, slack_api, "Init Slack API client")
+
+Rel(manager, command, "Trigger")
+Rel(command, gh_api, "Fetch data")
+Rel(command, slack_api, "Send message")
+Rel(gh_api, gh, "Fetch data", "https")
+Rel(slack_api, slack, "Send message", "https")
+@enduml

@@ -1,0 +1,23 @@
+
+@startuml duck-bot-context
+title Bot Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+!define DEVICONS2 https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons/devicons2
+!include DEVICONS2/github_original.puml
+!include DEVICONS2/githubactions.puml
+!include DEVICONS2/go.puml
+!include DEVICONS2/slack.puml
+
+
+Person(user, "Duck Member")
+System(ghac, "Github Action", $sprite="githubactions")
+System_Ext(gh, "Github", $sprite="github_original")
+System(bot, "Duck Bot", $sprite="go")
+System_Ext(slack, "Slack", $sprite="slack")
+
+Rel(user, bot, "Trigger bot")
+Rel(ghac, bot, "Trigger bot")
+Rel(bot, gh, "Fetch data", "https")
+Rel(bot, slack, "Send message", "https")
+@enduml
