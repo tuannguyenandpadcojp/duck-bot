@@ -12,8 +12,15 @@ type ZLogger struct {
 	*zerolog.Logger
 }
 
-func NewZLogger() *ZLogger {
+type ZLoggerConfig struct {
+	Env string
+}
+
+func NewZLogger(cfg ZLoggerConfig) *ZLogger {
 	logger := zerolog.New(os.Stdout).With().Timestamp().Logger()
+	if cfg.Env == EnvLocal {
+		logger = logger.Level(zerolog.DebugLevel)
+	}
 	return &ZLogger{
 		&logger,
 	}

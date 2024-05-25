@@ -1,4 +1,16 @@
+// Description: This file contains the logger interface and the default logger implementation.
+// The logger interface defines the methods that a logger should implement.
+// The default logger implementation is a no-op logger that does nothing.
+// The default logger can be replaced with a custom logger by calling the SetDefaultLogger function.
+
+// The logging package is COPY from the repository: https://github.com/Layr-Labs/eigensdk-go/blob/master/logging/logger.go
+
 package logging
+
+const (
+	EnvLocal = "local"
+	EnvDev   = "development"
+)
 
 var defaultLogger Logger
 
