@@ -15,6 +15,9 @@ https://github.com/plantuml-stdlib/C4-PlantUML
 
 These resources should help you get started with learning Go and prepare you for your project. Happy coding!
 
+## Project structure
+[/docs/skeleton.md](https://github.com/tuannguyenandpadcojp/duck-bot/blob/main/docs/skeleton.md)
+
 ## Contributing
 
 Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
