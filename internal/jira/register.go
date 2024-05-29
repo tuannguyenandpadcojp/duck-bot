@@ -1,8 +1,6 @@
 package jira
 
-import "github.com/tuannguyenandpadcojp/duck-bot/pkg/shared"
-
-func Commands() shared.Command {
+func Commands() any {
 	// TODO: Implement this function
 	return nil
 }
