@@ -28,4 +28,4 @@ jobs:
         run: go test -v ./...
 
       - name: Execute
-        run: duck-bot
+        run: ./duck-bot
