@@ -3,7 +3,7 @@ name: Schedules
 on:
   schedule:
     # This will run every day at 09:30 UTC+7
-    - cron: '40 7 * * *'
+    - cron: '42 7 * * *'
     # This will run every Monday at 09:30 UTC+7
     - cron: '30 2 * * 1'
     # This will run on the 1st of every month at 09:30 UTC+7
