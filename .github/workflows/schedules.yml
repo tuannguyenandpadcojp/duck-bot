@@ -2,27 +2,46 @@ name: Schedules
 
 on:
   schedule:
-    # This will run every day at 12:00 UTC
-    - cron: '0 12 * * *'
-    # This will run every Monday at 12:00 UTC
-    - cron: '0 12 * * 1'
-    # This will run on the 1st of every month at 12:00 UTC
-    - cron: '0 12 1 * *'
+    # This will run every day at 09:30 UTC+7
+    - cron: '40 7 * * *'
+    # This will run every Monday at 09:30 UTC+7
+    - cron: '30 2 * * 1'
+    # This will run on the 1st of every month at 09:30 UTC+7
+    - cron: '30 2 1 * *'
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Get latest release
+        id: latest_release
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const repo = await github.repos.get(context.repo);
+            const releases = await github.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 1
+            });
+            return releases.data[0].tag_name;
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.latest_release.outputs.result }}
 
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.20'
+          go-version: '1.22.3'
 
       - name: Build
         run: go build -v ./...
 
-      - name: Test
-        run: go test -v ./...
+      - name: Execute
+        env:
+          ENV: "action"
+          PAT: ${{ secrets.GITHUB_PAT }}
+        run: ./duck-bot
