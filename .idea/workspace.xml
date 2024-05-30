@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="940a9913-b87a-456b-bce2-e2c1f69c1ab3" name="Changes" comment="fix(action): deploy action">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/schedules.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/schedules.yml" afterDir="false" />
-    </list>
+    <list default="true" id="940a9913-b87a-456b-bce2-e2c1f69c1ab3" name="Changes" comment="fix(action): deploy action" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +111,7 @@
       <workItem from="1716956155577" duration="7870000" />
       <workItem from="1716967258759" duration="12000" />
       <workItem from="1716967475960" duration="5465000" />
-      <workItem from="1717041598670" duration="2517000" />
+      <workItem from="1717041598670" duration="2882000" />
     </task>
     <task id="LOCAL-00001" summary="fix(action): deploy action">
       <option name="closed" value="true" />
