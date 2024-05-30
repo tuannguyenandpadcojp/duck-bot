@@ -47,7 +47,7 @@ jobs:
           go-version: '1.22.3'
 
       - name: Build
-        run: go build -v ./...
+        run: go build -v -o duck-bot ./cmd/main.go && chmod +x duck-bot
 
   deploy:
     runs-on: ubuntu-latest
