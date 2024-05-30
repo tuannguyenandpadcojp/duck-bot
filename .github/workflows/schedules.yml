@@ -47,7 +47,7 @@ jobs:
           go-version: '1.22.3'
 
       - name: Build
-        run: go build -v -o duck-bot ./cmd/main.go && chmod +x duck-bot
+        run: go build -v -o duck-bot ./cmd/main.go
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -64,8 +64,8 @@ jobs:
         with:
           name: duck-bot
 
-      - name: List file
-        run: ls -la
+      - name: Grant Permissions
+        run: chmod +x duck-bot
 
       - name: Execute
         env:
