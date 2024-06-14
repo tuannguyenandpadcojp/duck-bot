@@ -1,0 +1,62 @@
+name: Daily Report Schedules
+
+on:
+  schedule:
+    # This will run every day at 09:30 UTC+7
+    - cron: '30 2 * * * *'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
+
+      - name: Get latest tag
+        id: get_latest_release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          latest_tag=$(gh release list --limit 1 --json tagName --jq '.[0].tagName')
+          echo "Latest release tag: $latest_tag"
+          echo "::set-output name=latest_tag::$latest_tag"
+
+      - name: Checkout latest release tag
+        run: git checkout ${{ steps.get_latest_release.outputs.latest_tag }}
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22.3'
+
+      - name: Build
+        run: go build -v -o duck-bot ./cmd/main.go
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: duck-bot
+          path: duck-bot
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: duck-bot
+
+      - name: Grant Permissions
+        run: chmod +x duck-bot
+
+      - name: Execute
+        env:
+          ENV: "action"
+        run: ./duck-bot
