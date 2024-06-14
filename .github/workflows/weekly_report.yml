@@ -1,4 +1,4 @@
-name: Schedules
+name: Weekly Report Schedules
 
 on:
   schedule:

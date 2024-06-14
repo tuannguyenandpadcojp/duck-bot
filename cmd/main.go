@@ -16,7 +16,7 @@ import (
 func main() {
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: duck-bot <command> [arguments]")
-		return
+		os.Exit(1)
 	}
 	cfg, err := config.LoadConfig()
 	if err != nil {

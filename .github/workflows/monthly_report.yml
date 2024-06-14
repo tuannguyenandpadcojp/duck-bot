@@ -1,4 +1,4 @@
-name: Schedules
+name: Monthly Report Schedules
 
 on:
   schedule:
